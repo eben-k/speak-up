@@ -30,22 +30,26 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
   name: "login-form",
-  data() {
-    return {
-      userId: ""
-    };
-  },
+  data: () => ({ userId: "" }),
   computed: {
     isValid: function() {
       const result: boolean = this.userId.length < 3;
       return result ? result : this.loading;
     },
-    ...mapState(["loading", "error", "userId"]),
+    ...mapState(["loading", "error"]),
     ...mapGetters(["hasError"])
+  },
+  methods: {
+    ...mapActions({ login: "login" }),
+
+    async onSubmit() {
+      const result = await this.$store.dispatch("login", this.userId);
+      console.log(result, "...........");
+    }
   }
 });
 </script>
