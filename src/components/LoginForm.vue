@@ -9,7 +9,7 @@
           id="userInput"
           type="text"
           placeholder="Enter user name"
-          v-model="userId"
+          v-model="username"
           autocomplete="off"
           :disabled="loading"
           required
@@ -34,10 +34,10 @@ import { mapState, mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
   name: "login-form",
-  data: () => ({ userId: "" }),
+  data: () => ({ username: "" }),
   computed: {
     isValid: function() {
-      const result: boolean = this.userId.length < 3;
+      const result: boolean = this.username.length < 3;
       return result ? result : this.loading;
     },
     ...mapState(["loading", "error"]),
@@ -47,7 +47,7 @@ export default Vue.extend({
     ...mapActions({ login: "login" }),
 
     async onSubmit() {
-      const result = await this.$store.dispatch("login", this.userId);
+      const result = await this.$store.dispatch("login", this.username);
       console.log(result, "...........");
     }
   }

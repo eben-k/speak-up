@@ -25,6 +25,7 @@ export const actions: ActionTree<state, state> = {
       commit("setError", "");
       commit("setLoading", true);
       const currentUser = await streamchat.joinChat(username);
+      console.log(currentUser, "got here????");
       commit("setUser", {
         username: currentUser.id,
         name: currentUser.username
