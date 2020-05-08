@@ -9,7 +9,7 @@
           id="userInput"
           type="text"
           placeholder="Enter user name"
-          v-model="userId"
+          v-model="username"
           autocomplete="off"
           :disabled="loading"
           required
@@ -30,22 +30,26 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default Vue.extend({
   name: "login-form",
-  data() {
-    return {
-      userId: ""
-    };
-  },
+  data: () => ({ username: "" }),
   computed: {
     isValid: function() {
-      const result: boolean = this.userId.length < 3;
+      const result: boolean = this.username.length < 3;
       return result ? result : this.loading;
     },
-    ...mapState(["loading", "error", "userId"]),
+    ...mapState(["loading", "error"]),
     ...mapGetters(["hasError"])
+  },
+  methods: {
+    ...mapActions({ login: "login" }),
+
+    async onSubmit() {
+      const result = await this.$store.dispatch("login", this.username);
+      console.log(result, "...........");
+    }
   }
 });
 </script>

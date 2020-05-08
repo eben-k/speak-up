@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
+
 import mutations from "./mutations";
 import actions from "./actions";
 
@@ -25,8 +26,8 @@ export default new Vuex.Store({
     messages: [],
     userTyping: null
   },
+  actions,
   mutations: { mutations },
-  actions: { actions },
   modules: {},
   getters: { hasError: state => (state.error ? true : false) },
   plugins: [vuexLocal.plugin],
