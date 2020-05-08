@@ -1,5 +1,4 @@
 // import { Mutation, MutationTree } from "vuex";
-/* eslint-disable */
 
 type state = {
   loading: boolean;
@@ -14,12 +13,12 @@ type state = {
   userTyping: null | string;
 };
 
-export function setError({ state, error }: { state: state; error: any }) {
+export function setError({ state, error }: { state: state; error: string }) {
   state.error = error;
 }
 export function setLoading({
   state,
-  loading,
+  loading
 }: {
   state: {
     loading: boolean;
@@ -28,7 +27,7 @@ export function setLoading({
 }) {
   state.loading = loading;
 }
-export function setUser(state: { user: any }, user: any) {
+export function setUser(state: { user: [] }, user: []) {
   state.user = user;
 }
 export function setReconnect(
@@ -37,29 +36,29 @@ export function setReconnect(
 ) {
   state.reconnect = reconnect;
 }
-export function setActiveRoom(state: { activeRoom: any }, roomId: any) {
+export function setActiveRoom(state: { activeRoom: string }, roomId: string) {
   state.activeRoom = roomId;
 }
-export function setRooms(state: { rooms: any }, rooms: any) {
+export function setRooms(state: { rooms: [] }, rooms: []) {
   state.rooms = rooms;
 }
-export function setUsers(state: { users: any }, users: any) {
+export function setUsers(state: { users: [] }, users: []) {
   state.users = users;
 }
 export function clearChatRoom(state: { users: never[]; messages: never[] }) {
   state.users = [];
   state.messages = [];
 }
-export function setMessages(state: { messages: any }, messages: any) {
+export function setMessages(state: { messages: [] }, messages: []) {
   state.messages = messages;
 }
-export function addMessage(state: { messages: any[] }, message: any) {
+export function addMessage(state: { messages: string[] }, message: string) {
   state.messages.push(message);
 }
-export function setSending(state: { sending: any }, status: any) {
+export function setSending(state: { sending: boolean }, status: boolean) {
   state.sending = status;
 }
-export function setUserTyping(state: { userTyping: any }, userId: any) {
+export function setUserTyping(state: { userTyping: string }, userId: string) {
   state.userTyping = userId;
 }
 export function reset(state: {

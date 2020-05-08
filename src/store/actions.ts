@@ -14,7 +14,8 @@ type state = {
   userTyping: null | string;
 };
 
-function handleError(commit: any, error: { message: any }) {
+// eslint-disable-next-line
+function handleError(commit: any, error: { message: string }) {
   const message = error.message;
   commit("setError", message);
 }

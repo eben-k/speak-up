@@ -27,7 +27,8 @@ async function initializeStream() {
 }
 async function initializeChannel() {
   const channel = client.channel("messaging");
-  return channel;
+  const messages = (await channel.watch()).messages;
+  return messages;
 }
 async function joinChat(username: string) {
   const { data } = await axios.post(
@@ -40,6 +41,7 @@ async function joinChat(username: string) {
   user = data.user;
   token = data.token;
   await initializeStream();
+  await initializeChannel();
   return user;
 }
 
